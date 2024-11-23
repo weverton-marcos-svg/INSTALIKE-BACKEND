@@ -6,7 +6,7 @@ import conectarAoBanco from "../config/dbConfig.js";
 const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
 
 // Define uma função assíncrona chamada `getTodosPosts` para recuperar todos os posts do banco de dados
-export default async function getTodosPosts() {
+export async function getTodosPosts() {
     // Acessa o banco de dados chamado "imersao-instabyte"
     const db = conexao.db("imersao-instabyte");
   
@@ -16,3 +16,9 @@ export default async function getTodosPosts() {
     // Encontra todos os documentos na coleção "posts" e os converte para um array
     return colecao.find().toArray();
 }
+
+export async function criarPost(novoPost) {
+     const db = conexao.db("imersao-instabyte");
+     const colecao = db.collection("posts");
+     return colecao.insertOne(novoPost);
+} 
