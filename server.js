@@ -4,6 +4,7 @@ import routes from "./src/routes/postsRoutes.js";
 
 // Inicializa uma instância da aplicação Express
 const app = express();
+app.use(express.static("uploads"));
 routes(app);
 
 // Inicia o servidor para escutar requisições na porta 3000
